@@ -14,6 +14,12 @@ class ListeningParty extends Model
 
     protected $guarded = ['id'];
 
+    protected $casts = [
+        'is_active' => 'boolean',
+        'start_time' => 'datetime',
+        'end_time' => 'datetime'
+    ];
+
     /** @return BelongsTo  */
     public function episodes(): BelongsTo
     {
