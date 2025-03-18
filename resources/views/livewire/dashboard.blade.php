@@ -1,6 +1,7 @@
 <?php
 
 use Livewire\Volt\Component;
+use App\Models\ListeningParty;
 
 new class extends Component {
 
