@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 /** @package App\Models */
 class Podcast extends Model
 {
+
     /** @use HasFactory<\Database\Factories\PodcastFactory> */
     use HasFactory;
 
