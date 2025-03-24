@@ -1,11 +1,10 @@
 <?php
 
 use App\Jobs\ProcessPodcastUrl;
+use App\Models\Episode;
+use App\Models\ListeningParty;
 use Livewire\Attributes\Validate;
 use Livewire\Volt\Component;
-use App\Models\ListeningParty;
-use App\Models\Episode;
-use App\Jobs\ProcessPodcastUrl;
 
 new class extends Component {
     #[Validate('required|string|max:255')]
