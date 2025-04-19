@@ -1,7 +1,7 @@
 models:
   Conference:
     name: string
-    description: datetime
+    description: string
     start_date: datetime
     end_date: datetime
     status: string
@@ -30,6 +30,7 @@ models:
   Talk:
     title: string
     abstract: text
+    speaker_id: unsignedInteger
     relationships:
       belongsTo: Speaker
       belongsToMany: Conference

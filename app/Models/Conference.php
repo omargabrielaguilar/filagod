@@ -15,7 +15,6 @@ class Conference extends Model
     {
         return [
             'id' => 'integer',
-            'description' => 'datetime',
             'start_date' => 'datetime',
             'end_date' => 'datetime',
             'venue_id' => 'integer',
