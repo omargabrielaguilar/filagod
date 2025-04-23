@@ -21,14 +21,19 @@ class ConferenceResource extends Resource
         return $form
             ->schema([
                 Forms\Components\TextInput::make('name')
+                    ->label('Conference')
+                    ->required()
+                    ->helperText('The name of the conference.')
+                    ->hint('Here is the hint')
+                    ->hintIcon('heroicon-o-rectangle-stack')
+                    ->maxLength(255),
+                Forms\Components\MarkdownEditor::make('description')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('description')
+                Forms\Components\DatePicker::make('start_date')
                     ->required()
-                    ->maxLength(255),
-                Forms\Components\DateTimePicker::make('start_date')
-                    ->required(),
-                Forms\Components\DateTimePicker::make('end_date')
+                    ->native(false),
+                Forms\Components\DatePicker::make('end_date')
                     ->required(),
                 Forms\Components\TextInput::make('status')
                     ->required()
