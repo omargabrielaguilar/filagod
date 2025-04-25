@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use App\Enums\Region;
 use App\Filament\Resources\ConferenceResource\Pages;
 use App\Models\Conference;
 use Filament\Forms;
@@ -35,6 +36,8 @@ class ConferenceResource extends Resource
         Forms\Components\DatePicker::make('end_date')
           ->required()
           ->native(false),
+        Forms\Components\Checkbox::make('is_published')
+          ->default(true),
         Forms\Components\Select::make('status')
           ->options([
             'draft' => 'Draft',
@@ -42,9 +45,9 @@ class ConferenceResource extends Resource
             'archived' => 'Archived'
           ])
           ->required(),
-        Forms\Components\TextInput::make('region')
-          ->required()
-          ->maxLength(255),
+        Forms\Components\Select::make('region')
+          ->enum(Region::class)   //validation rule for enums
+          ->options(Region::class),
         Forms\Components\Select::make('venue_id')
           ->relationship('venue', 'name')
           ->default(null),
