@@ -7,10 +7,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
+/** @package App\Models */
 class Venue extends Model
 {
     use HasFactory;
 
+    /** @return array  */
     protected function casts(): array
     {
         return [
