@@ -1,10 +1,12 @@
 <?php
 
+use App\Models\Venue;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration {
+return new class extends Migration
+{
     /**
      * Run the migrations.
      */
@@ -19,7 +21,6 @@ return new class extends Migration {
             $table->boolean('is_published')->default(false);
             $table->string('status');
             $table->string('region');
-            $table->foreignId('venue_id')->constrained()->nullable();
             $table->foreignId(Venue::class)->nullable();
             $table->timestamps();
         });
