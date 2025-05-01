@@ -7,6 +7,7 @@ use App\Filament\Resources\ConferenceResource\Pages;
 use App\Models\Conference;
 use Filament\Forms;
 use Filament\Forms\Form;
+use Filament\Forms\Get;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -20,8 +21,6 @@ class ConferenceResource extends Resource
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
     /**
-     * @param Form $form
-     * @return Form
      * @throws BindingResolutionException
      */
     public static function form(Form $form): Form
@@ -49,17 +48,16 @@ class ConferenceResource extends Resource
                     ->options([
                         'draft' => 'Draft',
                         'published' => 'Published',
-                        'archived' => 'Archived'
+                        'archived' => 'Archived',
                     ])
                     ->required(),
                 Forms\Components\Select::make('region')
-                    ->live() //rerender the form component
-                    ->enum(Region::class)   //validation rule for enums
+                    ->live() // rerender the form component
+                    ->enum(Region::class)   // validation rule for enums
                     ->options(Region::class),
                 Forms\Components\Select::make('venue_id')
-                    ->relationship('venue', 'name', modifyQueryUsing: function (Builder $query) {
-                        ray('hello');
-                        return $query->where('region', Region::US);
+                    ->relationship('venue', 'name', modifyQueryUsing: function (Builder $query, Get $get) {
+                        return $query->where('region', $get('region'));
                     })
                     ->default(null),
             ]);
