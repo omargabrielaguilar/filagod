@@ -11,6 +11,7 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Contracts\Container\BindingResolutionException;
+use Illuminate\Database\Eloquent\Builder;
 
 class ConferenceResource extends Resource
 {
@@ -52,10 +53,14 @@ class ConferenceResource extends Resource
                     ])
                     ->required(),
                 Forms\Components\Select::make('region')
+                    ->live() //rerender the form component
                     ->enum(Region::class)   //validation rule for enums
                     ->options(Region::class),
                 Forms\Components\Select::make('venue_id')
-                    ->relationship('venue', 'name')
+                    ->relationship('venue', 'name', modifyQueryUsing: function (Builder $query) {
+                        ray('hello');
+                        return $query->where('region', Region::US);
+                    })
                     ->default(null),
             ]);
     }
