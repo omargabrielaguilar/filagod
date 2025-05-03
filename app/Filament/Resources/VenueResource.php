@@ -2,10 +2,8 @@
 
 namespace App\Filament\Resources;
 
-use App\Enums\Region;
 use App\Filament\Resources\VenueResource\Pages;
 use App\Models\Venue;
-use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -20,23 +18,7 @@ class VenueResource extends Resource
   public static function form(Form $form): Form
   {
     return $form
-      ->schema([
-        Forms\Components\TextInput::make('name')
-          ->required()
-          ->maxLength(255),
-        Forms\Components\TextInput::make('city')
-          ->required()
-          ->maxLength(255),
-        Forms\Components\TextInput::make('country')
-          ->required()
-          ->maxLength(255),
-        Forms\Components\TextInput::make('postal_code')
-          ->required()
-          ->maxLength(255),
-        Forms\Components\Select::make('region')
-          ->enum(Region::class)   //validation rule for enums
-          ->options(Region::class),
-      ]);
+      ->schema(Venue::getForm());
   }
 
   public static function table(Table $table): Table

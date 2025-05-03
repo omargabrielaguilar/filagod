@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Enums\Region;
 use App\Filament\Resources\ConferenceResource\Pages;
 use App\Models\Conference;
+use App\Models\Venue;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Forms\Get;
@@ -56,6 +57,10 @@ class ConferenceResource extends Resource
                     ->enum(Region::class)   // validation rule for enums
                     ->options(Region::class),
                 Forms\Components\Select::make('venue_id')
+                    ->searchable()
+                    ->preload()
+                    ->createOptionForm(Venue::getForm())
+                    ->editOptionForm(Venue::getForm())
                     ->relationship('venue', 'name', modifyQueryUsing: function (Builder $query, Get $get) {
                         return $query->where('region', $get('region'));
                     })
