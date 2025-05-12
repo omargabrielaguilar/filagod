@@ -12,8 +12,8 @@ class ListConferences extends ListRecords
     protected static string $resource = ConferenceResource::class;
 
     /**
-     * @return array<string|int, \Filament\Actions\Action|\Filament\Actions\ActionGroup> 
-     * @throws BindingResolutionException 
+     * @return array<string|int, \Filament\Actions\Action|\Filament\Actions\ActionGroup>
+     * @throws BindingResolutionException
      */
     protected function getHeaderActions(): array
     {
